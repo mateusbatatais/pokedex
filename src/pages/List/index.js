@@ -20,15 +20,14 @@ function List() {
       {!loading ? (
         <div>
           <div className="container">
-            {console.log(data)}
             <div className="row">
               {data && data.results ? (
-                data.results.map((item) => (
+                data.results.map((pokemon) => (
                   <>
-                    <div className="col-md-4" key={item.name}>
-                      <h4 className="text-center">{item.name}</h4>
+                    <div className="col-md-4" key={pokemon.name}>
+                      <h4 className="text-center">{pokemon.name}</h4>
                       <Link
-                        to={`/Detail/${item.name}`}
+                        to={`/Detail/${pokemon.name}`}
                         className="btn btn-info w-100"
                       >
                         Details
