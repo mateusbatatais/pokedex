@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import api from "../../services/api";
 
 function List() {
   const [allPokemons, setAllPokemons] = useState([]);
@@ -8,23 +9,20 @@ function List() {
   );
 
   const getAllPokemons = async () => {
-    const res = await fetch(loadMore);
-    const data = await res.json();
-
-    setLoadMore(data.next);
+    api.get(loadMore).then((response) => {
+      const data = response.data;
+      setLoadMore(data.next);
+      createPokemonObject(data.results);
+    });
 
     function createPokemonObject(results) {
       results.forEach(async (pokemon) => {
-        const res = await fetch(
-          `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
-        );
-
-        const data = await res.json();
-
-        setAllPokemons((currentList) => [...currentList, data]);
+        api.get(`pokemon/${pokemon.name}`).then((response) => {
+          const data = response.data;
+          setAllPokemons((currentList) => [...currentList, data]);
+        });
       });
     }
-    createPokemonObject(data.results);
   };
 
   useEffect(() => {

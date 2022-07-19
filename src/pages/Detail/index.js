@@ -1,7 +1,7 @@
 import api from "../../services/api";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import Pokemon from "../../components/molecules/Pokemon";
 
 function Detail() {
   const [pokemon, setPokemon] = useState();
@@ -22,27 +22,13 @@ function Detail() {
         <>
           <div className="container">
             {pokemon ? (
-              <article className="text-center">
-                <div className="d-flex justify-content-center">
-                  {pokemon.sprites.front_default && (
-                    <img
-                      src={pokemon.sprites.front_default}
-                      alt={pokemon.name}
-                    />
-                  )}
-                  {pokemon.sprites.back_default && (
-                    <img
-                      src={pokemon.sprites.back_default}
-                      alt={pokemon.name}
-                    />
-                  )}
-                </div>
-                <h2>{pokemon.name}</h2>
-                <p>Base experience: {pokemon.base_experience}</p>
-                <Link to="/" className="btn btn-info w-100">
-                  Go back
-                </Link>{" "}
-              </article>
+              <Pokemon
+                key={pokemon.id}
+                img1={pokemon.sprites.front_default}
+                img2={pokemon.sprites.back_default}
+                exp={pokemon.base_experience}
+                name={pokemon.name}
+              />
             ) : (
               <p>no pokemon</p>
             )}
