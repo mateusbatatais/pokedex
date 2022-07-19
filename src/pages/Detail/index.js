@@ -22,9 +22,23 @@ function Detail() {
         <>
           <div className="container">
             {pokemon ? (
-              <article>
-                <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+              <article className="text-center">
+                <div className="d-flex justify-content-center">
+                  {pokemon.sprites.front_default && (
+                    <img
+                      src={pokemon.sprites.front_default}
+                      alt={pokemon.name}
+                    />
+                  )}
+                  {pokemon.sprites.back_default && (
+                    <img
+                      src={pokemon.sprites.back_default}
+                      alt={pokemon.name}
+                    />
+                  )}
+                </div>
                 <h2>{pokemon.name}</h2>
+                <p>Base experience: {pokemon.base_experience}</p>
                 <Link to="/" className="btn btn-info w-100">
                   Go back
                 </Link>{" "}
