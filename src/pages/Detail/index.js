@@ -23,7 +23,7 @@ function Detail() {
           <div className="container">
             {pokemon ? (
               <article>
-                <img src={pokemon.sprites.front_default} />
+                <img src={pokemon.sprites.front_default} alt={pokemon.name} />
                 <h2>{pokemon.name}</h2>
                 <Link to="/" className="btn btn-info w-100">
                   Go back
